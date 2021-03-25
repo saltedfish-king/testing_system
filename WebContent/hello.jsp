@@ -8,13 +8,19 @@
 </head>
 <body>
 <a href="getStu?id=1">查看自己的信息</a>
-<form action="insertTopic">
+<!-- <form action="insertTopic">
 	name:<input type="text" name="topicAnswer"><br/>
 	msg:<input type="text" name="topicMsg"><br/>
 	level:<input type="text" name="topicLevel"><br/>
 	kind:<input type="text" name="topicKind"><br/>
 	subject:<input type="text" name="subjects"><br/>
 	<input type="submit" value="添加题目信息">
+	<br> -->
+	
+<form action="insertStu">
+	name:<input type="text" name="stuName"><br/>
+	password:<input type="password" name="password"><br/>
+	<input type="submit" value="添加学生信息">
 </form>
 </body>
 </html>

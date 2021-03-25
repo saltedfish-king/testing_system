@@ -19,7 +19,7 @@ public class TeacherController {
 	@RequestMapping("/insertStu")
 	public String insertStu(Student student) {
 		teacherService.insertStu(student);
-		return "redirect:success";
+		return "success";
 	}
 	
 	//添加题目信息

@@ -2,7 +2,7 @@ package com.swpu.bean;
 
 public class Student {
 	
-	private String stuName;
+	private String stuName,password;
 	private Integer id,examId;
 	
 	
@@ -24,9 +24,15 @@ public class Student {
 	public void setExamId(Integer examId) {
 		this.examId = examId;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@Override
 	public String toString() {
-		return "Student [stuName=" + stuName + ", id=" + id + ", examId=" + examId + "]";
+		return "Student [stuName=" + stuName + ", password=" + password + ", id=" + id + ", examId=" + examId + "]";
 	}
 	
 }
