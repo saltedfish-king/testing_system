@@ -8,7 +8,13 @@
 		<result property="examId" column="examId"/>
 	</resultMap>
 	
+	<!-- 通过id查询学生信息 -->
 	<select id="getStu" parameterType="int" resultMap="studentMap">
 		select * from student where id=#{id}
+	</select>
+	
+	<!-- 学生登录验证 -->
+	<select id="stuLogin" parameterType="com.swpu.bean.Student" resultMap="studentMap">
+		select * from student where id=#{student.getId()}
 	</select>
 </mapper>

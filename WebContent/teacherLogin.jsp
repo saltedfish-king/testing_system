@@ -4,7 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>教师登录</title>
+<script type="text/javascript">
+	window.onload = function getMsg() {
+		var query = window.location.search.substring(1);
+		var parameters = query.split("&");
+		for(var i=0;i<parameters.length;i++){
+			var msg = parameters[i].split("=");
+			if(msg[0] == "msg"){
+				if(msg[1] == 1){
+					alert("工号不存在！");
+				}
+				else if(msg[1] == 2){
+					alert("密码错误！");
+				}
+			}
+		}
+	}
+</script>
 </head>
 <body>
 <form action="teacherLogin">

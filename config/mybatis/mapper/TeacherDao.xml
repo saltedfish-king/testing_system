@@ -9,6 +9,16 @@
   	<result property="subject" column="subject"/>
   </resultMap>
   
+  <!-- 通过id查询教师信息 -->
+	<select id="getTeacher" parameterType="int" resultMap="teacherMap">
+		select * from teacher where id=#{id}
+	</select>
+	
+	<!-- 教师登录验证 -->
+	<select id="teacherLogin" parameterType="com.swpu.bean.Teacher" resultMap="teacherMap">
+		select * from teacher where id=#{teacher.getId()}
+	</select>
+  
   <!-- 添加题目 -->
   <insert id="insertTopic" parameterType="com.swpu.bean.Topic" useGeneratedKeys="true" keyProperty="id">
   	INSERT INTO topic (topicAnswer,topicMsg,topicLevel,topicKind,subjects,state) VALUE 

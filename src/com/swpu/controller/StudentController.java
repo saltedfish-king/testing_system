@@ -24,4 +24,21 @@ public class StudentController {
 		return "success";
 	}
 	
+	//学生登录验证
+	@RequestMapping("/stuLogin")
+	public String stuLogin(Student student,Model model) {
+		Student stu = studentService.getStu(student.getId());
+		if (stu != null) {
+			if(stu.getPassword().equals(student.getPassword())) {
+				model.addAttribute("student", stu);
+				return "stuHomepage";
+			}
+			else {
+				model.addAttribute("msg", 2);
+				return "redirect:stuLogin.jsp";
+			}
+		}
+		model.addAttribute("msg", 1);
+		return "redirect:stuLogin.jsp";
+	}
 }
