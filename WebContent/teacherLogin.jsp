@@ -5,10 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教师登录</title>
+<script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-	window.onload = function getMsg() {
+$(document).ready(function(){
+	
+	function login() {
 		var query = window.location.search.substring(1);
 		var parameters = query.split("&");
+		console.log(parameters);
 		for(var i=0;i<parameters.length;i++){
 			var msg = parameters[i].split("=");
 			if(msg[0] == "msg"){
@@ -21,13 +25,15 @@
 			}
 		}
 	}
+	login();
+	});
 </script>
 </head>
 <body>
 <form action="teacherLogin">
-	教师工号:<input type="text" name="id"/><br>
-	密码:<input type="text" name="password"/><br>
-	<input type="submit" value="登录"/>
+	教师工号:<input type="text" name="id" id="id"/><br>
+	密码:<input type="text" name="password" id="password"/><br>
+	<input type="submit" value="登录" id="button"/>
 </form>
 </body>
 </html>

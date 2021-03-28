@@ -1,5 +1,7 @@
 package com.swpu.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +28,13 @@ public class StudentController {
 	
 	//学生登录验证
 	@RequestMapping("/stuLogin")
-	public String stuLogin(Student student,Model model) {
+	public String stuLogin(Student student,Model model,HttpSession session) {
 		Student stu = studentService.getStu(student.getId());
 		if (stu != null) {
 			if(stu.getPassword().equals(student.getPassword())) {
-				model.addAttribute("student", stu);
-				return "stuHomepage";
+//				model.addAttribute("student", stu);
+				session.setAttribute("student", stu);
+				return "redirect:/toStuHomepage";
 			}
 			else {
 				model.addAttribute("msg", 2);
@@ -40,5 +43,11 @@ public class StudentController {
 		}
 		model.addAttribute("msg", 1);
 		return "redirect:stuLogin.jsp";
+	}
+	
+	//转发到学生首页
+	@RequestMapping("/toStuHomepage")
+	public String toStuHomepage() {
+		return "stuHomepage";
 	}
 }

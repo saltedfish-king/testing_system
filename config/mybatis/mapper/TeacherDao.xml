@@ -19,10 +19,19 @@
 		select * from teacher where id=#{teacher.getId()}
 	</select>
   
-  <!-- 添加题目 -->
-  <insert id="insertTopic" parameterType="com.swpu.bean.Topic" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO topic (topicAnswer,topicMsg,topicLevel,topicKind,subjects,state) VALUE 
-  	(#{topicAnswer},#{topicMsg},#{topicLevel},#{topicKind},#{subjects},#{state})
+  <!-- 添加题目(三种不同的类型) -->
+  
+  <insert id="insertChoose" parameterType="com.swpu.bean.ChooseTopic" useGeneratedKeys="true" keyProperty="id">
+  	INSERT INTO chooseTopic (topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD,subjects) VALUES 
+  	(#{topicMsg},#{topicAnswer},#{chooseA},#{chooseB},#{chooseC},#{chooseD},#{subjects})
+  </insert>
+  <insert id="insertFull" parameterType="com.swpu.bean.FullTopic" useGeneratedKeys="true" keyProperty="id">
+  	INSERT INTO chooseTopic (topicMsg,topicAnswer,subjects) VALUES 
+  	(#{topicMsg},#{topicAnswer},#{subjects})
+  </insert>
+  <insert id="insertLarge" parameterType="com.swpu.bean.LargeTopic" useGeneratedKeys="true" keyProperty="id">
+  	INSERT INTO chooseTopic (topicMsg,topicAnswer,subjects) VALUES 
+  	(#{topicMsg},#{topicAnswer},#{subjects})
   </insert>
   
   <!-- 添加学生 -->

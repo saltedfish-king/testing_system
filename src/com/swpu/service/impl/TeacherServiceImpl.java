@@ -3,9 +3,11 @@ package com.swpu.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.swpu.bean.ChooseTopic;
+import com.swpu.bean.FullTopic;
+import com.swpu.bean.LargeTopic;
 import com.swpu.bean.Student;
 import com.swpu.bean.Teacher;
-import com.swpu.bean.Topic;
 import com.swpu.dao.TeacherDao;
 import com.swpu.service.TeacherService;
 
@@ -14,12 +16,6 @@ public class TeacherServiceImpl implements TeacherService{
 
 	@Autowired
 	TeacherDao teacherDao;
-	
-	//添加题目
-	@Override
-	public void insertTopic(Topic topic) {
-		teacherDao.insertTopic(topic);
-	}
 	
 	//添加学生
 	@Override
@@ -37,6 +33,22 @@ public class TeacherServiceImpl implements TeacherService{
 	@Override
 	public Teacher teacherLogin(Teacher teacher) {
 		return teacherDao.teacherLogin(teacher);
+	}
+
+	/**
+	 * 三种题目的添加
+	 */
+	@Override
+	public void insertChoose(ChooseTopic chooseTopic) {
+		teacherDao.insertChoose(chooseTopic);
+	}
+	@Override
+	public void insertFull(FullTopic fullTopic) {
+		teacherDao.insertFull(fullTopic);
+	}
+	@Override
+	public void insertLarge(LargeTopic largeTopic) {
+		teacherDao.insertLarge(largeTopic);
 	}
 
 }

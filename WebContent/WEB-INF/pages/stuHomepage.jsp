@@ -7,6 +7,7 @@
 <title>学生首页</title>
 </head>
 <body>
-${student }
+<a href="">查看成绩（也可以查看试卷）</a>
+<a href="">进行考试</a>
 </body>
 </html>
