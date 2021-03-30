@@ -22,16 +22,16 @@
   <!-- 添加题目(三种不同的类型) -->
   
   <insert id="insertChoose" parameterType="com.swpu.bean.ChooseTopic" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO chooseTopic (topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD,subjects) VALUES 
-  	(#{topicMsg},#{topicAnswer},#{chooseA},#{chooseB},#{chooseC},#{chooseD},#{subjects})
+  	INSERT INTO chooseTopic (topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD,subjects,state,teacherId,grade) VALUES 
+  	(#{topicMsg},#{topicAnswer},#{chooseA},#{chooseB},#{chooseC},#{chooseD},#{subjects},#{state},#{teacherId},#{grade})
   </insert>
   <insert id="insertFull" parameterType="com.swpu.bean.FullTopic" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO chooseTopic (topicMsg,topicAnswer,subjects) VALUES 
-  	(#{topicMsg},#{topicAnswer},#{subjects})
+  	INSERT INTO fullTopic (topicMsg,topicAnswer,subjects,state,teacherId,grade) VALUES 
+  	(#{topicMsg},#{topicAnswer},#{subjects},#{state},#{teacherId},#{grade})
   </insert>
   <insert id="insertLarge" parameterType="com.swpu.bean.LargeTopic" useGeneratedKeys="true" keyProperty="id">
-  	INSERT INTO chooseTopic (topicMsg,topicAnswer,subjects) VALUES 
-  	(#{topicMsg},#{topicAnswer},#{subjects})
+  	INSERT INTO largeTopic (topicMsg,topicAnswer,subjects,state,teacherId,grade) VALUES 
+  	(#{topicMsg},#{topicAnswer},#{subjects},#{state},#{teacherId},#{grade})
   </insert>
   
   <!-- 添加学生 -->

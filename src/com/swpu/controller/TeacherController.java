@@ -36,12 +36,12 @@ public class TeacherController {
 	@RequestMapping("/insertFull")
 	public String insertFull(FullTopic fullTopic,Model model) {
 		teacherService.insertFull(fullTopic);
-		return "";
+		return "teacherHomepage";
 	}
 	@RequestMapping("/insertLarge")
 	public String insertLarge(LargeTopic largeTopic,Model model) {
 		teacherService.insertLarge(largeTopic);
-		return "";
+		return "teacherHomepage";
 	}
 	
 	//教师登录验证

@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>学生首页</title>
+<title>考试科目选择页面</title>
 </head>
 <body>
-<a href="">查看成绩（也可以查看试卷）</a>
-<a href="exam.jsp">进行考试</a>
+<a href="chineseExam">语文</a><br>
+<a href="mathExam">数学</a><br>
+<a href="englishExam">英语</a><br>
 </body>
 </html>

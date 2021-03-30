@@ -2,14 +2,16 @@ package com.swpu.bean;
 
 /**
  * 主观题（默认必须和答案一样)
+ * 每道题15分
  * @author 13571
  *
  */
 public class LargeTopic {
 	
-	private int id,subjects;
+	private int id,subjects,teacherId;
 	private String topicMsg,topicAnswer;
 	private boolean state = false;
+	private int grade = 15;
 	public int getId() {
 		return id;
 	}
@@ -39,5 +41,17 @@ public class LargeTopic {
 	}
 	public void setState(boolean state) {
 		this.state = state;
+	}
+	public int getTeacherId() {
+		return teacherId;
+	}
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 }

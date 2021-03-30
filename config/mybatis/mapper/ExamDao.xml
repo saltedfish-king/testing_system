@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN " "http://mybatis.org/dtd/mybatis-3-mapper.dtd " >
+<mapper namespace="com.swpu.dao.ExamDao">
+
+	<!-- 三种题目 -->
+	<resultMap type="com.swpu.bean.ChooseTopic" id="chooseTopicMap">
+		<id column="id" property="id"/>
+		<result column="topicMsg" property="topicMsg"/>
+		<result column="topicAnswer" property="topicAnswer"/>
+		<result column="chooseA" property="chooseA"/>
+		<result column="chooseB" property="chooseB"/>
+		<result column="chooseC" property="chooseC"/>
+		<result column="chooseD" property="chooseD"/>
+		<result column="subjects" property="subjects"/>
+		<result column="state" property="state"/>
+		<result column="teacherId" property="teacherId"/>
+	</resultMap>
+	<resultMap type="com.swpu.bean.FullTopic" id="fullTopicMap">
+		<id column="id" property="id"/>
+		<result column="topicMsg" property="topicMsg"/>
+		<result column="topicAnswer" property="topicAnswer"/>
+		<result column="state" property="state"/>
+		<result column="subjects" property="subjects"/>
+		<result column="teacherId" property="teacherId"/>
+	</resultMap>
+	<resultMap type="com.swpu.bean.LargeTopic" id="largeTopicMap">
+		<id column="id" property="id"/>
+		<result column="topicMsg" property="topicMsg"/>
+		<result column="topicAnswer" property="topicAnswer"/>
+		<result column="state" property="state"/>
+		<result column="subjects" property="subjects"/>
+		<result column="teacherId" property="teacherId"/>
+	</resultMap>
+	
+	<!-- 试卷 -->
+	<resultMap type="com.swpu.bean.Exam" id="examMap">
+		<id column="id" property="id"/>
+		<result column="examSubject" property="examSubject"/>
+		<result column="state" property="state"/>
+		<result column="examName" property="examName"/>
+		<collection property="chooseTopic" resultMap="chooseTopicMap"></collection>
+		<collection property="fullTopic" resultMap="fullTopicMap"></collection>
+		<collection property="largeTopic" resultMap="largeTopicMap"></collection>
+	</resultMap>
+	
+	<!-- 生成试卷（核心） -->
+	<select id="createExam" resultMap="examMap"></select>
+</mapper>

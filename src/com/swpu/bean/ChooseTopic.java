@@ -2,15 +2,17 @@ package com.swpu.bean;
 
 /**
  * 选择题（只表示单选）
+ * 每道题5分
  * abcd分别表示四个选项
  * @author 13571
  *
  */
 public class ChooseTopic {
 	
-	private int id,subjects;
+	private int id,subjects,teacherId;
 	private String topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD;
 	private boolean state = false;
+	private int grade = 5;
 	public int getId() {
 		return id;
 	}
@@ -64,5 +66,17 @@ public class ChooseTopic {
 	}
 	public void setState(boolean state) {
 		this.state = state;
+	}
+	public int getTeacherId() {
+		return teacherId;
+	}
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 }
