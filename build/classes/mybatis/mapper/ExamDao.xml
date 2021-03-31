@@ -44,5 +44,29 @@
 	</resultMap>
 	
 	<!-- 生成试卷（核心） -->
-	<select id="createExam" resultMap="examMap"></select>
+	<!-- 1、先获取需要的题目 -->
+	<select id="selectChoose" parameterType="int" resultMap="chooseTopicMap">
+		SELECT * FROM chooseTopic WHERE subjects = #{subjects} ORDER BY RAND() LIMIT 8
+	</select>
+	<select id="selectFull" parameterType="int" resultMap="fullTopicMap">
+		SELECT * FROM fullTopic WHERE subjects = #{subjects} ORDER BY RAND() LIMIT 6
+	</select>
+	<!-- 2、生成一张试卷 -->
+	<insert id="createExam" parameterType="com.swpu.bean.Exam" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO exam (examSubject,state,examName,studentId) VALUES 
+		(#{examSubject},#{state},#{examName},#{studentId});
+	</insert>
+	<!-- 3、将获取的题目加入联系表 -->
+	<insert id="EC_Contact" parameterType="java.util.List">
+		INSERT INTO exam_chooseTopic (examId,chooseId) VALUES 
+		<foreach collection="list" item="item" separator=",">
+			(#{item.examId},#{item.id})
+		</foreach>
+	</insert>
+	<insert id="EF_Contact" parameterType="java.util.List">
+		INSERT INTO exam_fullTopic (examId,fullId) VALUES 
+		<foreach collection="list" item="item" separator=",">
+			(#{item.examId},#{item.id})
+		</foreach>
+	</insert>
 </mapper>

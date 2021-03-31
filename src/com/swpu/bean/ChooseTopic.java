@@ -9,7 +9,7 @@ package com.swpu.bean;
  */
 public class ChooseTopic {
 	
-	private int id,subjects,teacherId;
+	private int id,subjects,teacherId,examId;
 	private String topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD;
 	private boolean state = false;
 	private int grade = 5;
@@ -78,5 +78,11 @@ public class ChooseTopic {
 	}
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	public int getExamId() {
+		return examId;
+	}
+	public void setExamId(int examId) {
+		this.examId = examId;
 	}
 }

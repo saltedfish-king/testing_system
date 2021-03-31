@@ -7,8 +7,15 @@
 <title>考试科目选择页面</title>
 </head>
 <body>
-<a href="chineseExam">语文</a><br>
-<a href="mathExam">数学</a><br>
-<a href="englishExam">英语</a><br>
+<form action="createExam">
+	<input type="hidden" name="studentId" value="${student.id }">
+	试卷名称：<input type="text" name="examName">
+	试卷科目：<select name="examSubject">
+				<option value="0">语文</option>
+				<option value="1">数学</option>
+				<option value="2">英语</option>
+			 </select>
+	<input type="submit" value="生成试卷">
+</form>
 </body>
 </html>

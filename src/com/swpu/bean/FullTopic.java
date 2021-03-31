@@ -8,7 +8,7 @@ package com.swpu.bean;
  */
 public class FullTopic {
 	
-	private int id,subjects,teacherId;
+	private int id,subjects,teacherId,examId;
 	private String topicMsg,topicAnswer;
 	private boolean state = false;
 	private int grade = 10;
@@ -53,5 +53,11 @@ public class FullTopic {
 	}
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	public int getExamId() {
+		return examId;
+	}
+	public void setExamId(int examId) {
+		this.examId = examId;
 	}
 }

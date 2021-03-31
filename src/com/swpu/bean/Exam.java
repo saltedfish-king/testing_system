@@ -3,11 +3,12 @@ package com.swpu.bean;
 import java.util.List;
 
 public class Exam {
-	private int id,examSubject;
+	private int id,examSubject,state;
 	private String examName;
 	private List<ChooseTopic> chooseTopics;
 	private List<FullTopic> fullTopics;
 	private List<LargeTopic> largeTopics;
+	private int studentId; 
 	
 	
 	public int getId() {
@@ -45,6 +46,18 @@ public class Exam {
 	}
 	public void setExamName(String examName) {
 		this.examName = examName;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 	
 }

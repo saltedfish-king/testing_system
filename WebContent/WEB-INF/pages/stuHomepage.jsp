@@ -8,6 +8,6 @@
 </head>
 <body>
 <a href="">查看成绩（也可以查看试卷）</a>
-<a href="exam.jsp">进行考试</a>
+<a href="examSubjects.jsp">进行考试</a>
 </body>
 </html>
