@@ -8,15 +8,15 @@ package com.swpu.bean;
  */
 public class FullTopic {
 	
-	private int id,subjects,teacherId,examId;
+	private int fid,subjects,teacherId,examId;
 	private String topicMsg,topicAnswer;
 	private boolean state = false;
 	private int grade = 10;
-	public int getId() {
-		return id;
+	public int getFid() {
+		return fid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setFid(int fid) {
+		this.fid = fid;
 	}
 	public int getSubjects() {
 		return subjects;

@@ -11,9 +11,9 @@
 </script>
 </head>
 <body>
-${teacher.id }
+${teacher.tid }
 <form action="insertChoose">
-	<input type="hidden" name="teacherId" value="${teacher.id }">
+	<input type="hidden" name="teacherId" value="${teacher.tid }">
 	题目：<input type="text" name="topicMsg"><br>
 	答案：<input type="text" name="topicAnswer"><br>
 	A：<input type="text" name="chooseA"><br>

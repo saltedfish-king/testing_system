@@ -25,28 +25,42 @@ public class ExamController {
 	 * insert exam对象进入数据库
 	 * 获取需要的选择题，填空题，
 	 * 然后添加进试卷题目联系表
+	 * 添加一个判断：如果当前科目还有试卷未完成就无法生成新试卷
+	 * 若有未完成
+	 * 则通过联系表去查询已有的试卷然后返回
 	 */
 	@RequestMapping("/createExam")
 	public String createExam(Exam exam,Model model) {
-		List<ChooseTopic> choose = examService.selectChoose(exam.getExamSubject());
-		List<FullTopic> full = examService.selectFull(exam.getExamSubject());
-		examService.createExam(exam);
-		
-		for (FullTopic fullTopic : full) {
-			fullTopic.setExamId(exam.getId());
+		Exam examS = null;
+		examS = examService.queryState(exam.getExamSubject());
+		if(examS != null) {
+			List<ChooseTopic> choose = examService.queryChoose(examS.getEid());
+			List<FullTopic> full = examService.queryFull(examS.getEid());
+			examS.setChooseTopics(choose);
+			examS.setFullTopics(full);
+			model.addAttribute("exam", examS);
 		}
-		for (ChooseTopic chooseTopic : choose) {
-			chooseTopic.setExamId(exam.getId());
+		else {
+			List<ChooseTopic> choose = examService.selectChoose(exam.getExamSubject());
+			List<FullTopic> full = examService.selectFull(exam.getExamSubject());
+			examService.createExam(exam);
+			
+			for (FullTopic fullTopic : full) {
+				fullTopic.setExamId(exam.getEid());
+			}
+			for (ChooseTopic chooseTopic : choose) {
+				chooseTopic.setExamId(exam.getEid());
+			}
+			
+			examService.EC_Contact(choose);
+			examService.EF_Contact(full);
+			
+			exam.setChooseTopics(choose);
+			exam.setFullTopics(full);
+			exam.setExamSubject(exam.getExamSubject());
+			
+			model.addAttribute("exam", exam);
 		}
-		
-		examService.EC_Contact(choose);
-		examService.EF_Contact(full);
-		
-		exam.setChooseTopics(choose);
-		exam.setFullTopics(full);
-		exam.setExamSubject(exam.getExamSubject());
-		
-		model.addAttribute("exam", exam);
 		
 		if(exam.getExamSubject() == 0) {
 			return "chineseExam";

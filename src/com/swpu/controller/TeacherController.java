@@ -47,7 +47,7 @@ public class TeacherController {
 	//教师登录验证
 	@RequestMapping("/teacherLogin")
 	public String teacherLogin(Teacher teacher, Model model,HttpSession session) {
-		Teacher tea = teacherService.getTeacher(teacher.getId());
+		Teacher tea = teacherService.getTeacher(teacher.getTid());
 		if (tea != null) {
 			if (tea.getPassword().equals(teacher.getPassword())) {
 //				model.addAttribute("teacher", tea);

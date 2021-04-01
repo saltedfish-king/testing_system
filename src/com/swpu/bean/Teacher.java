@@ -1,15 +1,15 @@
 package com.swpu.bean;
 
 public class Teacher {
-	private Integer id,topics,subjects;
+	private Integer tid,topics,subjects;
 	private String tName,password;
 	
 	
-	public Integer getId() {
-		return id;
+	public Integer getTid() {
+		return tid;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTid(Integer tid) {
+		this.tid = tid;
 	}
 	public Integer getTopics() {
 		return topics;
@@ -34,11 +34,6 @@ public class Teacher {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	@Override
-	public String toString() {
-		return "Teacher [id=" + id + ", topics=" + topics + ", subjects=" + subjects + ", tName=" + tName
-				+ ", password=" + password + "]";
 	}
 	
 }

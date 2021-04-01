@@ -19,4 +19,9 @@ public interface ExamService {
 	//添加试卷和题目联系
 	public void EC_Contact(List<ChooseTopic> choose);
 	public void EF_Contact(List<FullTopic> full);
+	
+	//对未完成试卷的查询
+	public Exam queryState(int examSubject);
+	public List<ChooseTopic> queryChoose(int eid);
+	public List<FullTopic> queryFull(int eid); 
 }

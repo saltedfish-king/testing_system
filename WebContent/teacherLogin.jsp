@@ -31,7 +31,7 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="teacherLogin">
-	教师工号:<input type="text" name="id" id="id"/><br>
+	教师工号:<input type="text" name="tid" id="tid"/><br>
 	密码:<input type="text" name="password" id="password"/><br>
 	<input type="submit" value="登录" id="button"/>
 </form>

@@ -15,8 +15,8 @@ public class StudentServiceImpl implements StudentService{
 	
 	//通过id查询学生信息
 	@Override
-	public Student getStu(Integer id) {
-		return studentDao.getStu(id);
+	public Student getStu(Integer sid) {
+		return studentDao.getStu(sid);
 	}
 
 	//学生登录验证

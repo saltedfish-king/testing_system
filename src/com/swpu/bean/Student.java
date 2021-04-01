@@ -3,7 +3,7 @@ package com.swpu.bean;
 public class Student {
 	
 	private String stuName,password;
-	private Integer id,examId;
+	private Integer sid,examId;
 	
 	
 	public String getStuName() {
@@ -12,11 +12,11 @@ public class Student {
 	public void setStuName(String stuName) {
 		this.stuName = stuName;
 	}
-	public Integer getId() {
-		return id;
+	public Integer getSid() {
+		return sid;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setSid(Integer sid) {
+		this.sid = sid;
 	}
 	public Integer getExamId() {
 		return examId;
@@ -29,10 +29,6 @@ public class Student {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	@Override
-	public String toString() {
-		return "Student [stuName=" + stuName + ", password=" + password + ", id=" + id + ", examId=" + examId + "]";
 	}
 	
 }

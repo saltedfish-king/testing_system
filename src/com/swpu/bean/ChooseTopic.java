@@ -9,15 +9,15 @@ package com.swpu.bean;
  */
 public class ChooseTopic {
 	
-	private int id,subjects,teacherId,examId;
+	private int cid,subjects,teacherId,examId;
 	private String topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD;
 	private boolean state = false;
 	private int grade = 5;
-	public int getId() {
-		return id;
+	public int getCid() {
+		return cid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setCid(int cid) {
+		this.cid = cid;
 	}
 	public int getSubjects() {
 		return subjects;

@@ -42,5 +42,19 @@ public class ExamServiceImpl implements ExamService{
 	public void EF_Contact(List<FullTopic> full) {
 		examDao.EF_Contact(full);
 	}
+	
+	//对未完成试卷的查询
+	@Override
+	public Exam queryState(int examSubject) {
+		return examDao.queryState(examSubject);
+	}
+	@Override
+	public List<ChooseTopic> queryChoose(int eid) {
+		return examDao.queryChoose(eid);
+	}
+	@Override
+	public List<FullTopic> queryFull(int eid) {
+		return examDao.queryFull(eid);
+	}
 
 }

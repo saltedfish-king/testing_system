@@ -29,7 +29,7 @@ public class StudentController {
 	//学生登录验证
 	@RequestMapping("/stuLogin")
 	public String stuLogin(Student student,Model model,HttpSession session) {
-		Student stu = studentService.getStu(student.getId());
+		Student stu = studentService.getStu(student.getSid());
 		if (stu != null) {
 			if(stu.getPassword().equals(student.getPassword())) {
 //				model.addAttribute("student", stu);

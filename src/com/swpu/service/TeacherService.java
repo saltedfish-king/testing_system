@@ -9,7 +9,7 @@ import com.swpu.bean.Teacher;
 public interface TeacherService {
 	
 	//通过id查询教师
-	public Teacher getTeacher(Integer id);
+	public Teacher getTeacher(Integer tid);
 	
 	//教师验证
 	public Teacher teacherLogin(Teacher teacher);

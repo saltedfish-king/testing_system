@@ -3,18 +3,18 @@
 <mapper namespace="com.swpu.dao.StudentDao">
   
   <resultMap type="com.swpu.bean.Student" id="studentMap">
-		<id property="id" column="id"/>
+		<id property="sid" column="sid"/>
 		<result property="stuName" column="stuName"/>
 		<result property="examId" column="examId"/>
 	</resultMap>
 	
 	<!-- 通过id查询学生信息 -->
 	<select id="getStu" parameterType="int" resultMap="studentMap">
-		select * from student where id=#{id}
+		select * from student where sid=#{sid}
 	</select>
 	
 	<!-- 学生登录验证 -->
 	<select id="stuLogin" parameterType="com.swpu.bean.Student" resultMap="studentMap">
-		select * from student where id=#{student.getId()}
+		select * from student where sid=#{student.getSid()}
 	</select>
 </mapper>

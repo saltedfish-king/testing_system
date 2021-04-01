@@ -4,7 +4,7 @@
 
 	<!-- 三种题目 -->
 	<resultMap type="com.swpu.bean.ChooseTopic" id="chooseTopicMap">
-		<id column="id" property="id"/>
+		<id column="cid" property="cid"/>
 		<result column="topicMsg" property="topicMsg"/>
 		<result column="topicAnswer" property="topicAnswer"/>
 		<result column="chooseA" property="chooseA"/>
@@ -16,7 +16,7 @@
 		<result column="teacherId" property="teacherId"/>
 	</resultMap>
 	<resultMap type="com.swpu.bean.FullTopic" id="fullTopicMap">
-		<id column="id" property="id"/>
+		<id column="fid" property="fid"/>
 		<result column="topicMsg" property="topicMsg"/>
 		<result column="topicAnswer" property="topicAnswer"/>
 		<result column="state" property="state"/>
@@ -34,13 +34,14 @@
 	
 	<!-- 试卷 -->
 	<resultMap type="com.swpu.bean.Exam" id="examMap">
-		<id column="id" property="id"/>
+		<id column="eid" property="eid"/>
 		<result column="examSubject" property="examSubject"/>
 		<result column="state" property="state"/>
 		<result column="examName" property="examName"/>
-		<collection property="chooseTopic" resultMap="chooseTopicMap"></collection>
-		<collection property="fullTopic" resultMap="fullTopicMap"></collection>
-		<collection property="largeTopic" resultMap="largeTopicMap"></collection>
+		<result column="studentId" property="studentId"/>
+<!-- 		<collection property="chooseTopics" resultMap="chooseTopicMap"></collection>
+		<collection property="fullTopics" resultMap="fullTopicMap"></collection>
+		<collection property="largeTopics" resultMap="largeTopicMap"></collection> -->
 	</resultMap>
 	
 	<!-- 生成试卷（核心） -->
@@ -60,13 +61,23 @@
 	<insert id="EC_Contact" parameterType="java.util.List">
 		INSERT INTO exam_chooseTopic (examId,chooseId) VALUES 
 		<foreach collection="list" item="item" separator=",">
-			(#{item.examId},#{item.id})
+			(#{item.examId},#{item.ecid})
 		</foreach>
 	</insert>
 	<insert id="EF_Contact" parameterType="java.util.List">
 		INSERT INTO exam_fullTopic (examId,fullId) VALUES 
 		<foreach collection="list" item="item" separator=",">
-			(#{item.examId},#{item.id})
+			(#{item.examId},#{item.efid})
 		</foreach>
 	</insert>
+	<!-- 生成之前先进行一次查询 -->
+	<select id="queryState" parameterType="int" resultType="com.swpu.bean.Exam">
+	SELECT * FROM exam WHERE examSubject= #{examSubject} AND state= 0
+	</select>
+	<select id="queryChoose" parameterType="int" resultMap="chooseTopicMap">
+		SELECT * FROM chooseTopic JOIN exam_choosetopic ON cid = chooseId AND examId = #{eid}
+	</select>
+	<select id="queryFull" parameterType="int" resultMap="fullTopicMap">
+		SELECT * FROM fullTopic JOIN exam_fulltopic ON fid = fullId AND examId = #{eid}
+	</select>
 </mapper>

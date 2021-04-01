@@ -3,7 +3,7 @@
 <mapper namespace="com.swpu.dao.TeacherDao">
   
   <resultMap type="com.swpu.bean.Teacher" id="teacherMap">
-  	<id property="id" column="id"/>
+  	<id property="tid" column="tid"/>
   	<result property="tName" column="tName"/>
   	<result property="topics" column="topics"/>
   	<result property="subject" column="subject"/>
@@ -11,12 +11,12 @@
   
   <!-- 通过id查询教师信息 -->
 	<select id="getTeacher" parameterType="int" resultMap="teacherMap">
-		select * from teacher where id=#{id}
+		select * from teacher where tid=#{tid}
 	</select>
 	
 	<!-- 教师登录验证 -->
 	<select id="teacherLogin" parameterType="com.swpu.bean.Teacher" resultMap="teacherMap">
-		select * from teacher where id=#{teacher.getId()}
+		select * from teacher where tid=#{teacher.getTid()}
 	</select>
   
   <!-- 添加题目(三种不同的类型) -->

@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="createExam">
-	<input type="hidden" name="studentId" value="${student.id }">
+	<input type="hidden" name="studentId" value="${student.sid }">
 	试卷名称：<input type="text" name="examName">
 	试卷科目：<select name="examSubject">
 				<option value="0">语文</option>

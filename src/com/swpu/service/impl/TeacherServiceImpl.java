@@ -25,8 +25,8 @@ public class TeacherServiceImpl implements TeacherService{
 	
 	//通过id查询教师信息
 	@Override
-	public Teacher getTeacher(Integer id) {
-		return teacherDao.getTeacher(id);
+	public Teacher getTeacher(Integer tid) {
+		return teacherDao.getTeacher(tid);
 	}
 	
 	//教师登录验证
