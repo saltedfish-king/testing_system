@@ -3,7 +3,7 @@ package com.swpu.bean;
 import java.util.List;
 
 public class Exam {
-	private int eid,examSubject,state;
+	private int eid,examSubject,state,score;
 	private String examName;
 	private List<ChooseTopic> chooseTopics;
 	private List<FullTopic> fullTopics;
@@ -58,6 +58,12 @@ public class Exam {
 	}
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 }

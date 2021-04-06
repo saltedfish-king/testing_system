@@ -56,5 +56,23 @@ public class ExamServiceImpl implements ExamService{
 	public List<FullTopic> queryFull(int eid) {
 		return examDao.queryFull(eid);
 	}
+	
+	//将学生返回的答案存入数据库
+	@Override
+	public void chooseAnswer(String stuAnswer, int cid, int examId) {
+		examDao.chooseAnswer(stuAnswer, cid, examId);
+	}
+	@Override
+	public void fullAnswer(String stuAnswer, int fid, int examId) {
+		examDao.fullAnswer(stuAnswer, fid, examId);
+	}
 
+	@Override
+	//提交试卷之后修改试卷状态为已考state=1,并上传考试成绩
+	public void changeExam(int examId) {
+		examDao.changeExam(examId);
+	}
+	public void examScore(int examId,int score) {
+		examDao.examScore(examId, score);
+	}
 }

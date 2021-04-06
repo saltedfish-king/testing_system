@@ -24,4 +24,12 @@ public interface ExamService {
 	public Exam queryState(int examSubject);
 	public List<ChooseTopic> queryChoose(int eid);
 	public List<FullTopic> queryFull(int eid); 
+	
+	//将学生返回的答案存入数据库
+	public void chooseAnswer(String stuAnswer,int cid,int examId);
+	public void fullAnswer(String stuAnswer,int fid,int examId);
+	
+	//提交试卷之后修改试卷状态为已考state=1,并上传考试成绩
+	public void changeExam(int examId);
+	public void examScore(int examId,int score);
 }

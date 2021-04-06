@@ -80,4 +80,19 @@
 	<select id="queryFull" parameterType="int" resultMap="fullTopicMap">
 		SELECT * FROM fullTopic JOIN exam_fulltopic ON fid = fullId AND examId = #{eid}
 	</select>
+	
+	<!-- 添加学生答案 -->
+	<update id="chooseAnswer">
+		UPDATE exam_choosetopic SET stuAnswer = #{0} WHERE examId = #{2} AND chooseId = #{1}
+	</update>
+	<update id="fullAnswer">
+		UPDATE exam_fulltopic SET stuAnswer = #{0} WHERE examId = #{2} AND fullId = #{1}
+	</update>
+	<!-- 上传答案之后，将试卷状态修改为已考,并且上传考试成绩 -->
+	<update id="changeExam">
+		UPDATE exam SET state = 1 WHERE eid = #{examId}
+	</update>
+	<update id="examScore">
+		UPDATE exam SET score = #{1} WHERE eid = #{0}
+	</update>
 </mapper>

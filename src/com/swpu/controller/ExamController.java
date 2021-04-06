@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.swpu.bean.Answer;
 import com.swpu.bean.ChooseTopic;
 import com.swpu.bean.Exam;
 import com.swpu.bean.FullTopic;
@@ -73,4 +75,36 @@ public class ExamController {
 		}
 	}
 	
+	//学生完成做答后提交答案到数据库
+	@RequestMapping(value="/submitExam",method=RequestMethod.POST)
+	public String submitExam( Answer answer) {
+		Exam exam = examService.queryState(answer.getSubjects());
+		List<ChooseTopic> choose = examService.queryChoose(exam.getEid());
+		List<FullTopic> full = examService.queryFull(exam.getEid());
+		String[] chooses = {answer.getChoose1(),answer.getChoose2(),answer.getChoose3(),answer.getChoose4(),answer.getChoose5(),answer.getChoose6(),answer.getChoose7(),answer.getChoose8()};
+		
+		for (int i = 0; i < chooses.length; i++) {
+			examService.chooseAnswer(chooses[i], choose.get(i).getCid(), answer.getExamId());
+		}
+		for (int i = 0; i < answer.getStuAnswer().length; i++) {
+			examService.fullAnswer(answer.getStuAnswer()[i], full.get(i).getFid(), answer.getExamId());
+		}
+		examService.changeExam(answer.getExamId());
+		
+		//根据查询出的题目答案来判断学生试卷的成绩
+		int score = 0;
+		for (int i = 0; i < chooses.length; i++) {
+			if(chooses[i].equals(choose.get(i).getTopicAnswer())) {
+				score += 5;
+			}
+		}
+		for (int i = 0; i < answer.getStuAnswer().length; i++) {
+			if(answer.getStuAnswer()[i].equals(full.get(i).getTopicAnswer())) {
+				score += 10;
+			}
+		}
+		examService.examScore(answer.getExamId(), score);
+		
+		return "stuHomepage";
+	}
 }
