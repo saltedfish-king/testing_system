@@ -53,7 +53,7 @@
 		SELECT * FROM fullTopic WHERE subjects = #{subjects} ORDER BY RAND() LIMIT 6
 	</select>
 	<!-- 2、生成一张试卷 -->
-	<insert id="createExam" parameterType="com.swpu.bean.Exam" useGeneratedKeys="true" keyProperty="id">
+	<insert id="createExam" parameterType="com.swpu.bean.Exam" useGeneratedKeys="true" keyProperty="eid">
 		INSERT INTO exam (examSubject,state,examName,studentId) VALUES 
 		(#{examSubject},#{state},#{examName},#{studentId});
 	</insert>
@@ -61,13 +61,13 @@
 	<insert id="EC_Contact" parameterType="java.util.List">
 		INSERT INTO exam_chooseTopic (examId,chooseId) VALUES 
 		<foreach collection="list" item="item" separator=",">
-			(#{item.examId},#{item.ecid})
+			(#{item.examId},#{item.cid})
 		</foreach>
 	</insert>
 	<insert id="EF_Contact" parameterType="java.util.List">
 		INSERT INTO exam_fullTopic (examId,fullId) VALUES 
 		<foreach collection="list" item="item" separator=",">
-			(#{item.examId},#{item.efid})
+			(#{item.examId},#{item.fid})
 		</foreach>
 	</insert>
 	<!-- 生成之前先进行一次查询 -->

@@ -2,6 +2,7 @@ package com.swpu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,17 @@ import com.swpu.bean.Answer;
 import com.swpu.bean.ChooseTopic;
 import com.swpu.bean.Exam;
 import com.swpu.bean.FullTopic;
+import com.swpu.bean.Student;
 import com.swpu.service.ExamService;
+import com.swpu.service.StudentService;
 
 @Controller
 public class ExamController {
 
 	@Autowired
 	ExamService examService;
+	@Autowired
+	StudentService studentService;
 	
 	/**
 	 * 生成试卷思路：
@@ -77,10 +82,13 @@ public class ExamController {
 	
 	//学生完成做答后提交答案到数据库
 	@RequestMapping(value="/submitExam",method=RequestMethod.POST)
-	public String submitExam( Answer answer) {
+	public String submitExam( Answer answer,Model model) {
 		Exam exam = examService.queryState(answer.getSubjects());
 		List<ChooseTopic> choose = examService.queryChoose(exam.getEid());
 		List<FullTopic> full = examService.queryFull(exam.getEid());
+		
+		exam.setChooseTopics(choose);
+		exam.setFullTopics(full);
 		String[] chooses = {answer.getChoose1(),answer.getChoose2(),answer.getChoose3(),answer.getChoose4(),answer.getChoose5(),answer.getChoose6(),answer.getChoose7(),answer.getChoose8()};
 		
 		for (int i = 0; i < chooses.length; i++) {
@@ -105,6 +113,18 @@ public class ExamController {
 		}
 		examService.examScore(answer.getExamId(), score);
 		
+		exam.setScore(score);
+		model.addAttribute("Answer", answer);
+		model.addAttribute("exam", exam);
+		
+		return "stuExampage";
+	}
+	
+	//返回学生首页
+	@RequestMapping("/backHome")
+	public String backHome(int sid,HttpSession session) {
+		Student stu = studentService.getStu(sid);
+		session.setAttribute("student", stu);
 		return "stuHomepage";
 	}
 }
