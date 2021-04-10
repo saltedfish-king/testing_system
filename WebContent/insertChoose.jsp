@@ -8,14 +8,14 @@
 </head>
 <body>
 <form action="insertChoose">
-	<input type="hidden" name="teacherId" value="${teacher.id }">
+	<input type="hidden" name="teacherId" value="${teacher.tid }">
 	题目：<input type="text" name="topicMsg"><br>
 	答案：<input type="text" name="topicAnswer"><br>
 	A：<input type="text" name="chooseA"><br>
 	B:<input type="text" name="chooseB"><br>
 	C:<input type="text" name="chooseC"><br>
 	D:<input type="text" name="chooseD"><br>
-	科目：<input type="text" name="subjects"><br>
+	<input type="hidden" name="subjects" value="${teacher.subjects }"><br>
 	<input type="submit" id="submit" value="添加选择题"><br>
 </form>
 </body>

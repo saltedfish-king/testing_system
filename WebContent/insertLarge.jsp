@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="insertLarge">
-	<input type="hidden" name="teacherId" value="${teacher.id }">
+	<input type="hidden" name="teacherId" value="${teacher.tid }">
 	题目：<input type="text" name="topicMsg"><br>
 	答案：<input type="text" name="topicAnswer"><br>
 	科目：<input type="text" name="subjects"><br>

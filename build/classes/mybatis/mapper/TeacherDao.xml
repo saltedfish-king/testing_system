@@ -21,11 +21,11 @@
   
   <!-- 添加题目(三种不同的类型) -->
   
-  <insert id="insertChoose" parameterType="com.swpu.bean.ChooseTopic" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertChoose" parameterType="com.swpu.bean.ChooseTopic" useGeneratedKeys="true" keyProperty="cid">
   	INSERT INTO chooseTopic (topicMsg,topicAnswer,chooseA,chooseB,chooseC,chooseD,subjects,state,teacherId,grade) VALUES 
   	(#{topicMsg},#{topicAnswer},#{chooseA},#{chooseB},#{chooseC},#{chooseD},#{subjects},#{state},#{teacherId},#{grade})
   </insert>
-  <insert id="insertFull" parameterType="com.swpu.bean.FullTopic" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertFull" parameterType="com.swpu.bean.FullTopic" useGeneratedKeys="true" keyProperty="fid">
   	INSERT INTO fullTopic (topicMsg,topicAnswer,subjects,state,teacherId,grade) VALUES 
   	(#{topicMsg},#{topicAnswer},#{subjects},#{state},#{teacherId},#{grade})
   </insert>
@@ -35,7 +35,7 @@
   </insert>
   
   <!-- 添加学生 -->
-  <insert id="insertStu" parameterType="com.swpu.bean.Student" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertStu" parameterType="com.swpu.bean.Student" useGeneratedKeys="true" keyProperty="sid">
   	INSERT INTO student (stuName,PASSWORD) VALUE (#{stuName},#{password})
   </insert>
 </mapper>
