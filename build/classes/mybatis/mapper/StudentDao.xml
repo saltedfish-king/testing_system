@@ -17,4 +17,9 @@
 	<select id="stuLogin" parameterType="com.swpu.bean.Student" resultMap="studentMap">
 		select * from student where sid=#{student.getSid()}
 	</select>
+	
+	<!-- 学生查询成绩 -->
+	<select id="getScore" parameterType="int" resultType="com.swpu.bean.Exam">
+		SELECT * FROM exam WHERE studentId = #{sid} AND state = 1
+	</select>
 </mapper>

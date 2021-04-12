@@ -1,5 +1,7 @@
 package com.swpu.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.swpu.bean.Exam;
 import com.swpu.bean.Student;
 import com.swpu.service.StudentService;
 
@@ -49,5 +52,13 @@ public class StudentController {
 	@RequestMapping("/toStuHomepage")
 	public String toStuHomepage() {
 		return "stuHomepage";
+	}
+	
+	//学生查看自己的试卷以及成绩
+	@RequestMapping("/getScore")
+	public String getScore(Integer sid,Model model) {
+		List<Exam> exams = studentService.getScore(sid);
+		model.addAttribute("exams", exams);
+		return "scoreList";
 	}
 }

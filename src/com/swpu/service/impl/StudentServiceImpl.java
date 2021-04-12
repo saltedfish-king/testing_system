@@ -1,8 +1,11 @@
 package com.swpu.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.swpu.bean.Exam;
 import com.swpu.bean.Student;
 import com.swpu.dao.StudentDao;
 import com.swpu.service.StudentService;
@@ -23,6 +26,12 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public Student stuLogin(Student student) {
 		return studentDao.stuLogin(student);
+	}
+
+	//学生查询成绩
+	@Override
+	public List<Exam> getScore(Integer sid) {
+		return studentDao.getScore(sid);
 	}
 
 }
