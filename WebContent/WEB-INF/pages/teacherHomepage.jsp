@@ -12,20 +12,11 @@
 </head>
 <body>
 ${teacher.tid }
-<form action="insertChoose">
-	<input type="hidden" name="teacherId" value="${teacher.tid }">
-	题目：<input type="text" name="topicMsg"><br>
-	答案：<input type="text" name="topicAnswer"><br>
-	A：<input type="text" name="chooseA"><br>
-	B:<input type="text" name="chooseB"><br>
-	C:<input type="text" name="chooseC"><br>
-	D:<input type="text" name="chooseD"><br>
-	科目：<input type="text" name="subjects"><br>
-	<input type="submit" id="submit" value="添加选择题"><br>
-</form>
+
 --------------------------------<br>
 <a href="insertChoose.jsp">添加选择题</a>
 <a href="insertFull.jsp">添加填空题</a>
 <a href="insertLarge.jsp">添加主观题</a>
+<a href="queryTopic?tid=${teacher.tid }">查看自己发布的题目</a>
 </body>
 </html>

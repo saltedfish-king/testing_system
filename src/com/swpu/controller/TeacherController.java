@@ -1,5 +1,7 @@
 package com.swpu.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,45 @@ public class TeacherController {
 	//转发到教师首页
 	@RequestMapping("/toTeacherHomepage")
 	public String toTeacherHomepage() {
+		return "teacherHomepage";
+	}
+	
+	//查询教师自己发布的题目
+	@RequestMapping("/queryTopic")
+	public String queryTopic(Integer tid,Model model) {
+		List<ChooseTopic> chooseTopic = teacherService.queryChooseTopic(tid);
+		List<FullTopic> fullTopic = teacherService.queryFullTopic(tid);
+		model.addAttribute("chooses", chooseTopic);
+		model.addAttribute("fulls", fullTopic);
+		return "queryTopic";
+	}
+	
+	//对题目进行修改前的查询
+	@RequestMapping("/changeChoose")
+	public String changeChoose(Integer cid,Model model) {
+		ChooseTopic chooseTopic = teacherService.getChoose(cid);
+		model.addAttribute("choose", chooseTopic);
+		return "changeChoose";
+	}
+	@RequestMapping("/changeFull")
+	public String changeFull(Integer fid,Model model) {
+		FullTopic fullTopic = teacherService.getFull(fid);
+		model.addAttribute("full", fullTopic);
+		return "changeFull";
+	}
+	//进行修改
+	@RequestMapping("/updateChoose")
+	public String updateChoose(ChooseTopic choose,HttpSession session) {
+		teacherService.updateChoose(choose);
+		Teacher tea = teacherService.getTeacher(choose.getTeacherId());
+		session.setAttribute("teacher", tea);
+		return "teacherHomepage";
+	}
+	@RequestMapping("/updateFull")
+	public String updateFull(FullTopic full,HttpSession session) {
+		teacherService.updateFull(full);
+		Teacher tea = teacherService.getTeacher(full.getTeacherId());
+		session.setAttribute("teacher", tea);
 		return "teacherHomepage";
 	}
 }

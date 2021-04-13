@@ -1,5 +1,7 @@
 package com.swpu.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +51,38 @@ public class TeacherServiceImpl implements TeacherService{
 	@Override
 	public void insertLarge(LargeTopic largeTopic) {
 		teacherDao.insertLarge(largeTopic);
+	}
+
+	//查询题目
+	@Override
+	public List<ChooseTopic> queryChooseTopic(Integer tid) {
+		return teacherDao.queryChooseTopic(tid);
+	}
+
+	@Override
+	public List<FullTopic> queryFullTopic(Integer tid) {
+		return teacherDao.queryFullTopic(tid);
+	}
+
+	//修改对应题目及其查询（先查询题目显示然后修改）
+	@Override
+	public ChooseTopic getChoose(Integer cid) {
+		return teacherDao.getChoose(cid);
+	}
+
+	@Override
+	public FullTopic getFull(Integer fid) {
+		return teacherDao.getFull(fid);
+	}
+
+	@Override
+	public void updateChoose(ChooseTopic choose) {
+		teacherDao.updateChoose(choose);
+	}
+
+	@Override
+	public void updateFull(FullTopic full) {
+		teacherDao.updateFull(full);
 	}
 
 }

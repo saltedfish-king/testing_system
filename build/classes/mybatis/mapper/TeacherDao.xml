@@ -38,4 +38,28 @@
   <insert id="insertStu" parameterType="com.swpu.bean.Student" useGeneratedKeys="true" keyProperty="sid">
   	INSERT INTO student (stuName,PASSWORD) VALUE (#{stuName},#{password})
   </insert>
+  
+  <!-- 根据tid查询教师发布的题目 -->
+  <select id="queryChooseTopic" resultType="com.swpu.bean.ChooseTopic">
+  	SELECT * FROM chooseTopic WHERE teacherId = #{tid}
+  </select>
+  <select id="queryFullTopic" resultType="com.swpu.bean.FullTopic">
+  	SELECT * FROM fullTopic WHERE teacherId = #{tid}
+  </select>
+  
+  <!-- 查询出要修改的题目以及对其的修改 -->
+  <select id="getChoose" resultType="com.swpu.bean.ChooseTopic">
+  	SELECT * FROM chooseTopic WHERE cid = #{cid}
+  </select>
+  <select id="getFull" resultType="com.swpu.bean.FullTopic">
+  	SELECT * FROM fullTopic WHERE fid = #{fid}
+  </select>
+  <update id="updateChoose">
+  	UPDATE chooseTopic SET topicMsg = #{topicMsg},topicAnswer = #{topicAnswer},
+  	chooseA = #{chooseA},chooseB = #{chooseB},chooseC = #{chooseC},chooseD = #{chooseD} 
+  	WHERE cid = #{cid}
+  </update>
+  <update id="updateFull">
+  	UPDATE fullTopic SET topicMsg = #{topicMsg},topicAnswer = #{topicAnswer} WHERE fid = #{fid}
+  </update>
 </mapper>
