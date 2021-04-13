@@ -15,4 +15,10 @@ public interface StudentService {
 	
 	//学生查询成绩
 	public List<Exam> getScore(Integer sid);
+	
+	//学生通过成绩单查询试卷
+	public Exam getExamByScore(Integer eid);
+	//查询对应试卷的答案
+	public String getChooseAnswer(Integer eid,Integer cid);
+	public String getFullAnswer(Integer eid,Integer fid);
 }

@@ -127,4 +127,5 @@ public class ExamController {
 		session.setAttribute("student", stu);
 		return "stuHomepage";
 	}
+	
 }

@@ -34,4 +34,19 @@ public class StudentServiceImpl implements StudentService{
 		return studentDao.getScore(sid);
 	}
 
+	//学生通过成绩单查询试卷
+	@Override
+	public Exam getExamByScore(Integer eid) {
+		return studentDao.getExamByScore(eid);
+	}
+
+	//查询对应试卷的答案
+	@Override
+	public String getChooseAnswer(Integer eid, Integer cid) {
+		return studentDao.getChooseAnswer(eid, cid);
+	}
+	@Override
+	public String getFullAnswer(Integer eid, Integer fid) {
+		return studentDao.getFullAnswer(eid, fid);
+	}
 }

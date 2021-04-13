@@ -18,8 +18,20 @@
 		select * from student where sid=#{student.getSid()}
 	</select>
 	
-	<!-- 学生查询成绩 -->
+	<!-- 学生查询成绩(即试卷） -->
 	<select id="getScore" parameterType="int" resultType="com.swpu.bean.Exam">
 		SELECT * FROM exam WHERE studentId = #{sid} AND state = 1
+	</select>
+	
+	<!-- 学生通过成绩单查询对应试卷 -->
+	<select id="getExamByScore" parameterType="int" resultType="com.swpu.bean.Exam">
+		SELECT * FROM exam WHERE eid = #{eid}
+	</select>
+	<!-- 查询试卷对应得答案 -->
+	<select id="getChooseAnswer" resultType="string">
+		SELECT stuAnswer FROM exam_choosetopic WHERE examId = #{0} AND chooseId = #{1}
+	</select>
+	<select id="getFullAnswer" resultType="string">
+		SELECT stuAnswer FROM exam_fulltopic WHERE examId = #{0} AND fullId = #{1}
 	</select>
 </mapper>

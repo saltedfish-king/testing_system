@@ -10,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.swpu.bean.Answer;
+import com.swpu.bean.ChooseTopic;
 import com.swpu.bean.Exam;
+import com.swpu.bean.FullTopic;
 import com.swpu.bean.Student;
+import com.swpu.service.ExamService;
 import com.swpu.service.StudentService;
 
 
@@ -20,6 +24,8 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
+	@Autowired
+	ExamService examService;
 	
 	 //通过id查询学生个人信息
 	@RequestMapping("/getStu")
@@ -61,4 +67,38 @@ public class StudentController {
 		model.addAttribute("exams", exams);
 		return "scoreList";
 	}
+	
+	//学生通过成绩单进行试卷的查询
+	@RequestMapping(value="/getExamByScore")
+	public String getExamByScore(Integer eid,Model model) {
+		Exam exam = studentService.getExamByScore(eid);
+		List<ChooseTopic> choose = examService.queryChoose(exam.getEid());
+		List<FullTopic> full = examService.queryFull(exam.getEid());
+		exam.setChooseTopics(choose);
+		exam.setFullTopics(full);
+		
+		Answer answer = new Answer();
+		String[] chooses = new String[8];
+		String[] fulls = new String[6];
+		for (int i = 0; i < choose.size(); i++) {
+			chooses[i] = studentService.getChooseAnswer(eid, choose.get(i).getCid());
+		}
+		for (int i = 0; i < full.size(); i++) {
+			fulls[i] = studentService.getFullAnswer(eid, full.get(i).getFid());
+		}
+		answer.setChoose1(chooses[0]);
+		answer.setChoose2(chooses[1]);
+		answer.setChoose3(chooses[2]);
+		answer.setChoose4(chooses[3]);
+		answer.setChoose5(chooses[4]);
+		answer.setChoose6(chooses[5]);
+		answer.setChoose7(chooses[6]);
+		answer.setChoose8(chooses[7]);
+		answer.setStuAnswer(fulls);
+		model.addAttribute("exam", exam);
+		model.addAttribute("Answer", answer);
+		
+		return "stuExampage";
+	}
+	
 }
