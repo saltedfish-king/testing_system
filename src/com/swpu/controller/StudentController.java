@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.swpu.bean.Answer;
 import com.swpu.bean.ChooseTopic;
@@ -19,6 +21,7 @@ import com.swpu.service.ExamService;
 import com.swpu.service.StudentService;
 
 
+@SessionAttributes(value= {"exams"})
 @Controller
 public class StudentController {
 	
@@ -56,17 +59,24 @@ public class StudentController {
 	
 	//转发到学生首页
 	@RequestMapping("/toStuHomepage")
-	public String toStuHomepage() {
+	public String toStuHomepage(HttpSession session) {
+		Student stu = (Student) session.getAttribute("student");
+		
+		//通过sid查询到之后需要查询的成绩
+		List<Exam> exams = studentService.getScore(stu.getSid());
+		session.setAttribute("exams", exams);
 		return "stuHomepage";
 	}
 	
 	//学生查看自己的试卷以及成绩
-	@RequestMapping("/getScore")
-	public String getScore(Integer sid,Model model) {
-		List<Exam> exams = studentService.getScore(sid);
-		model.addAttribute("exams", exams);
-		return "scoreList";
+	@RequestMapping(value="/getScore")
+	@ResponseBody
+	public List<Exam> getScore(HttpSession session) {
+		Student stu = (Student) session.getAttribute("student");
+		List<Exam> exams = studentService.getScore(stu.getSid());
+		return exams;
 	}
+	
 	
 	//学生通过成绩单进行试卷的查询
 	@RequestMapping(value="/getExamByScore")

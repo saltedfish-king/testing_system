@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.swpu.bean.ChooseTopic;
 import com.swpu.bean.FullTopic;
@@ -67,48 +69,73 @@ public class TeacherController {
 		return "redirect:teacherLogin.jsp";
 	}
 	
+	/**
+	 * 每次只要跳转到首页就需要将所有需要数据查询一边存入session
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	//转发到教师首页
 	@RequestMapping("/toTeacherHomepage")
-	public String toTeacherHomepage() {
+	public String toTeacherHomepage(HttpSession session,Model model) {
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		
+		//查询自己的题目
+		List<ChooseTopic> chooseTopic = teacherService.queryChooseTopic(teacher.getTid());
+		List<FullTopic> fullTopic = teacherService.queryFullTopic(teacher.getTid());
+		model.addAttribute("chooses", chooseTopic);
+		model.addAttribute("fulls", fullTopic);
 		return "teacherHomepage";
 	}
 	
 	//查询教师自己发布的题目
 	@RequestMapping("/queryTopic")
 	public String queryTopic(Integer tid,Model model) {
-		List<ChooseTopic> chooseTopic = teacherService.queryChooseTopic(tid);
-		List<FullTopic> fullTopic = teacherService.queryFullTopic(tid);
-		model.addAttribute("chooses", chooseTopic);
-		model.addAttribute("fulls", fullTopic);
+//		List<ChooseTopic> chooseTopic = teacherService.queryChooseTopic(tid);
+//		List<FullTopic> fullTopic = teacherService.queryFullTopic(tid);
+//		model.addAttribute("chooses", chooseTopic);
+//		model.addAttribute("fulls", fullTopic);
 		return "queryTopic";
 	}
 	
 	//对题目进行修改前的查询
 	@RequestMapping("/changeChoose")
-	public String changeChoose(Integer cid,Model model) {
+	@ResponseBody
+	public ChooseTopic changeChoose(@RequestBody Integer cid,Model model) {
 		ChooseTopic chooseTopic = teacherService.getChoose(cid);
-		model.addAttribute("choose", chooseTopic);
-		return "changeChoose";
+		return chooseTopic;
 	}
 	@RequestMapping("/changeFull")
-	public String changeFull(Integer fid,Model model) {
+	@ResponseBody
+	public FullTopic changeFull(@RequestBody Integer fid,Model model) {
 		FullTopic fullTopic = teacherService.getFull(fid);
-		model.addAttribute("full", fullTopic);
-		return "changeFull";
+		return fullTopic;
 	}
 	//进行修改
 	@RequestMapping("/updateChoose")
-	public String updateChoose(ChooseTopic choose,HttpSession session) {
+	public String updateChoose(ChooseTopic choose,HttpSession session,Model model) {
 		teacherService.updateChoose(choose);
 		Teacher tea = teacherService.getTeacher(choose.getTeacherId());
 		session.setAttribute("teacher", tea);
+		
+		//查询自己的题目
+		List<ChooseTopic> chooseTopic = teacherService.queryChooseTopic(tea.getTid());
+		List<FullTopic> fullTopic = teacherService.queryFullTopic(tea.getTid());
+		model.addAttribute("chooses", chooseTopic);
+		model.addAttribute("fulls", fullTopic);
 		return "teacherHomepage";
 	}
 	@RequestMapping("/updateFull")
-	public String updateFull(FullTopic full,HttpSession session) {
+	public String updateFull(FullTopic full,HttpSession session,Model model) {
 		teacherService.updateFull(full);
 		Teacher tea = teacherService.getTeacher(full.getTeacherId());
 		session.setAttribute("teacher", tea);
+		
+		//查询自己的题目
+		List<ChooseTopic> chooseTopic = teacherService.queryChooseTopic(tea.getTid());
+		List<FullTopic> fullTopic = teacherService.queryFullTopic(tea.getTid());
+		model.addAttribute("chooses", chooseTopic);
+		model.addAttribute("fulls", fullTopic);
 		return "teacherHomepage";
 	}
 }

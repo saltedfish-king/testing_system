@@ -10,7 +10,7 @@
 <form action="updateFull">
 	<input type="hidden" name="fid" value="${full.fid }">
 		<input type="hidden" name="teacherId" value="${full.teacherId }">
-	题目：<input type="text" name="topicMsg" value="${full.tpoicMsg }"><br>
+	题目：<input type="text" name="topicMsg" value="${full.topicMsg }"><br>
 	答案：<input type="text" name="topicAnswer" value="${full.topicAnswer }"><br>
 	<input type="submit" value="修改">
 </form>

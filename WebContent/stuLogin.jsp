@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>学生登录</title>
+<link rel="stylesheet" href="./css/login.css" type="text/css">
 <script type="text/javascript">
 	window.onload = function getMsg() {
 		var query = window.location.search.substring(1);
@@ -24,10 +25,27 @@
 </script>
 </head>
 <body>
-<form action="stuLogin">
+<!-- <form action="stuLogin">
 	学号:<input type="text" name="sid"/><br>
 	密码:<input type="password" name="password"/><br>
 	<input type="submit" value="登录"/>
-</form>
+</form> -->
+<div class="login-box">
+  <h2>Login</h2>
+  <form action="stuLogin">
+    <div class="user-box">
+      <input type="text" name="sid" required="required">
+      <label>学号</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="required">
+      <label>密码</label>
+    </div>
+    
+    <div id="sub">
+    <input type="submit" id="submit" value="登录">
+    </div>
+  </form>
+</div>
 </body>
 </html>
