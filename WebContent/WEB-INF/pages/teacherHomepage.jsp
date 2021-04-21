@@ -23,12 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!-- SideBar -->
   <div id="sidebar">
     <header>
-      <a href="#">${teacher.tName }</a>
+      <a>${teacher.tName }</a>
     </header>
     <ul class="nav">
       <li>
         <a onclick="topicShow(event)">
           <i class="zmdi zmdi-view-dashboard"></i> 添加题目
+          <span class="caret"></span>
         </a>
         <div class="topics">
         <ul>

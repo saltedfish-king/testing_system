@@ -72,7 +72,7 @@
 	</insert>
 	<!-- 生成之前先进行一次查询 -->
 	<select id="queryState" parameterType="int" resultType="com.swpu.bean.Exam">
-	SELECT * FROM exam WHERE examSubject= #{examSubject} AND state= 0
+	SELECT * FROM exam WHERE examSubject= #{0} AND state= 0 AND studentId = #{1}
 	</select>
 	<select id="queryChoose" parameterType="int" resultMap="chooseTopicMap">
 		SELECT * FROM chooseTopic JOIN exam_choosetopic ON cid = chooseId AND examId = #{eid}

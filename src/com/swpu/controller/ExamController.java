@@ -37,9 +37,10 @@ public class ExamController {
 	 * 则通过联系表去查询已有的试卷然后返回
 	 */
 	@RequestMapping("/createExam")
-	public String createExam(Exam exam,Model model) {
+	public String createExam(Exam exam,Model model,HttpSession session) {
 		Exam examS = null;
-		examS = examService.queryState(exam.getExamSubject());
+		Student student = (Student)session.getAttribute("student");
+		examS = examService.queryState(exam.getExamSubject(),student.getSid());
 		if(examS != null) {
 			List<ChooseTopic> choose = examService.queryChoose(examS.getEid());
 			List<FullTopic> full = examService.queryFull(examS.getEid());
@@ -82,8 +83,9 @@ public class ExamController {
 	
 	//学生完成做答后提交答案到数据库
 	@RequestMapping(value="/submitExam",method=RequestMethod.POST)
-	public String submitExam( Answer answer,Model model) {
-		Exam exam = examService.queryState(answer.getSubjects());
+	public String submitExam( Answer answer,Model model,HttpSession session) {
+		Student student = (Student)session.getAttribute("student");
+		Exam exam = examService.queryState(answer.getSubjects(),student.getSid());
 		List<ChooseTopic> choose = examService.queryChoose(exam.getEid());
 		List<FullTopic> full = examService.queryFull(exam.getEid());
 		

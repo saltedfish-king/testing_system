@@ -64,6 +64,7 @@ public class StudentController {
 		
 		//通过sid查询到之后需要查询的成绩
 		List<Exam> exams = studentService.getScore(stu.getSid());
+		session.removeAttribute("exams");
 		session.setAttribute("exams", exams);
 		return "stuHomepage";
 	}

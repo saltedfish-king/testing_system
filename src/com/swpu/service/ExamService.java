@@ -21,7 +21,7 @@ public interface ExamService {
 	public void EF_Contact(List<FullTopic> full);
 	
 	//对未完成试卷的查询
-	public Exam queryState(int examSubject);
+	public Exam queryState(int examSubject,int sid);
 	public List<ChooseTopic> queryChoose(int eid);
 	public List<FullTopic> queryFull(int eid); 
 	

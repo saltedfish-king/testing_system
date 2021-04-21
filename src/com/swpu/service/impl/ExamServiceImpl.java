@@ -45,8 +45,8 @@ public class ExamServiceImpl implements ExamService{
 	
 	//对未完成试卷的查询
 	@Override
-	public Exam queryState(int examSubject) {
-		return examDao.queryState(examSubject);
+	public Exam queryState(int examSubject,int sid) {
+		return examDao.queryState(examSubject,sid);
 	}
 	@Override
 	public List<ChooseTopic> queryChoose(int eid) {
