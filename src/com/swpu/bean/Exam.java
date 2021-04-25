@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Exam {
 	private int eid,examSubject,state,score;
-	private String examName;
+	private String examName,stuName;
 	private List<ChooseTopic> chooseTopics;
 	private List<FullTopic> fullTopics;
 	private List<LargeTopic> largeTopics;
@@ -64,6 +64,12 @@ public class Exam {
 	}
 	public void setScore(int score) {
 		this.score = score;
+	}
+	public String getStuName() {
+		return stuName;
+	}
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
 	}
 	
 }

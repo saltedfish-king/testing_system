@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.swpu.bean.Answer;
 import com.swpu.bean.ChooseTopic;
@@ -21,7 +20,6 @@ import com.swpu.service.ExamService;
 import com.swpu.service.StudentService;
 
 
-@SessionAttributes(value= {"exams"})
 @Controller
 public class StudentController {
 	
@@ -64,7 +62,6 @@ public class StudentController {
 		
 		//通过sid查询到之后需要查询的成绩
 		List<Exam> exams = studentService.getScore(stu.getSid());
-		session.removeAttribute("exams");
 		session.setAttribute("exams", exams);
 		return "stuHomepage";
 	}

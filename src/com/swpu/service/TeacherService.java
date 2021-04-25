@@ -3,6 +3,7 @@ package com.swpu.service;
 import java.util.List;
 
 import com.swpu.bean.ChooseTopic;
+import com.swpu.bean.Exam;
 import com.swpu.bean.FullTopic;
 import com.swpu.bean.LargeTopic;
 import com.swpu.bean.Student;
@@ -33,4 +34,10 @@ public interface TeacherService {
 	public FullTopic getFull(Integer fid);
 	public void updateChoose(ChooseTopic choose);
 	public void updateFull(FullTopic full);
+	
+	//根据指定方式查询学生成绩（升序，降序）
+	public List<Exam> queryScoreAsc(int examSubject);
+	public List<Exam> queryScoreDesc(int examSubject);
+	//根据id获取学生姓名
+	public String getStuName(int sid);
 }

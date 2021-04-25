@@ -62,4 +62,16 @@
   <update id="updateFull">
   	UPDATE fullTopic SET topicMsg = #{topicMsg},topicAnswer = #{topicAnswer} WHERE fid = #{fid}
   </update>
+  
+  <!-- 按照指定顺序查询学生成绩 -->
+  <select id="queryScoreAsc" resultType="com.swpu.bean.Exam">
+  	SELECT * FROM exam WHERE examSubject = #{examSubject} AND state = 1 ORDER BY studentId ASC
+  </select>
+  <select id="queryScoreDesc" resultType="com.swpu.bean.Exam">
+  	SELECT * FROM exam WHERE examSubject = #{examSubject} AND state = 1 ORDER BY studentId DESC
+  </select>
+  <!-- 根据sid获取学生姓名 -->
+  <select id="getStuName" resultType="string">
+  	SELECT stuName FROM student WHERE sid = #{sid}
+  </select>
 </mapper>

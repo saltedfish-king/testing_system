@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.swpu.bean.ChooseTopic;
+import com.swpu.bean.Exam;
 import com.swpu.bean.FullTopic;
 import com.swpu.bean.LargeTopic;
 import com.swpu.bean.Student;
@@ -35,17 +36,17 @@ public class TeacherController {
 	@RequestMapping("/insertChoose")
 	public String insertChoose(ChooseTopic chooseTopic,Model model) {
 		teacherService.insertChoose(chooseTopic);
-		return "teacherHomepage";
+		return "redirect:/toTeacherHomepage";
 	}
 	@RequestMapping("/insertFull")
 	public String insertFull(FullTopic fullTopic,Model model) {
 		teacherService.insertFull(fullTopic);
-		return "teacherHomepage";
+		return "redirect:/toTeacherHomepage";
 	}
 	@RequestMapping("/insertLarge")
 	public String insertLarge(LargeTopic largeTopic,Model model) {
 		teacherService.insertLarge(largeTopic);
-		return "teacherHomepage";
+		return "redirect:/toTeacherHomepage";
 	}
 	
 	//教师登录验证
@@ -85,6 +86,18 @@ public class TeacherController {
 		List<FullTopic> fullTopic = teacherService.queryFullTopic(teacher.getTid());
 		model.addAttribute("chooses", chooseTopic);
 		model.addAttribute("fulls", fullTopic);
+		
+		//查询学生成绩
+		List<Exam> scoresAsc = teacherService.queryScoreAsc(teacher.getSubjects());
+		for (Exam score : scoresAsc) {
+			score.setStuName(teacherService.getStuName(score.getStudentId()));
+		}
+		session.setAttribute("scoresAsc", scoresAsc);
+		List<Exam> scoresDesc = teacherService.queryScoreDesc(teacher.getSubjects());
+		for (Exam score : scoresDesc) {
+			score.setStuName(teacherService.getStuName(score.getStudentId()));
+		}
+		session.setAttribute("scoresDesc", scoresDesc);
 		return "teacherHomepage";
 	}
 	
@@ -123,7 +136,7 @@ public class TeacherController {
 		List<FullTopic> fullTopic = teacherService.queryFullTopic(tea.getTid());
 		model.addAttribute("chooses", chooseTopic);
 		model.addAttribute("fulls", fullTopic);
-		return "teacherHomepage";
+		return "redirect:/toTeacherHomepage";
 	}
 	@RequestMapping("/updateFull")
 	public String updateFull(FullTopic full,HttpSession session,Model model) {
@@ -136,6 +149,6 @@ public class TeacherController {
 		List<FullTopic> fullTopic = teacherService.queryFullTopic(tea.getTid());
 		model.addAttribute("chooses", chooseTopic);
 		model.addAttribute("fulls", fullTopic);
-		return "teacherHomepage";
+		return "redirect:/toTeacherHomepage";
 	}
 }

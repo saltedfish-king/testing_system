@@ -11,10 +11,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>界面首页</title>
-<!-- <link rel="stylesheet" href="./BootStrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/Homepage.css">
-<script type="text/javascript" src="./scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="./BootStrap/js/bootstrap.min.js"></script> -->
 <base href="<%=basePath%>"> 
 <link rel="stylesheet" href="<%=basePath%>/BootStrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=basePath%>/css/Homepage.css">
@@ -27,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!-- SideBar -->
   <div id="sidebar">
     <header>
-      <a href="#">${student.stuName }</a>
+      <a>${student.stuName }</a>
     </header>
     <ul class="nav">
       <li onclick="getScore()">
@@ -84,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="container-fluid">
     
      <!-- 试卷成绩单 -->
-     <div class="menu" style="display: none" id="grade">
+     <div class="menu" id="grade">
 		<table class="table table-striped table-hover table-bordered text-center">
 				<tr>
 					<th class="text-center">试卷名称</th>

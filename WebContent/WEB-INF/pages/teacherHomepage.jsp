@@ -43,6 +43,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="zmdi zmdi-link"></i> 查看已发布题目
         </a>
       </li>
+      <li>
+        <a onclick="toQueryScore()">
+          <i class="zmdi zmdi-widgets"></i> 查询学生成绩
+        </a>
+      </li>
     </ul>
   </div>
   
@@ -217,6 +222,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	</div>
      </div>
      
+     <!-- 查询学生成绩 -->
+     <div class="menu" style="display: none" id="score">
+	     <div class="row">
+	     	<div class="col-md-8 col-md-offset-2">
+				<form action="queryScoreSort" class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-md-2 col-md-offset-4">按学号:</label>
+					<div class="col-md-2">
+						<select class="form-control" name="sequence" id="sequence">
+							<option value="0">升序</option>
+							<option value="1">降序</option>
+						</select>
+					</div>
+					<div class="col-md-2 col-md-offset-2">
+						<input type="button" onclick="showScore()" class="btn btn-info text-center" value="查询">
+					</div>
+				</div>
+				</form>
+	     	</div>
+	     </div>
+	     <div class="row" id="scoreAsc" style="display: none">
+	     	<div class="col-md-8 col-md-offset-2">
+		     	<table class="table table-striped table-hover table-bordered">
+		     		<tr>
+		     			<th>试卷名称</th>
+		     			<th>学生学号</th>
+		     			<th>学生姓名</th>
+		     			<th>学生成绩</th>
+		     		</tr>
+		     		<c:forEach items="${scoresAsc }" var="score">
+		     			<tr>
+		     				<td>${score.examName }</td>
+		     				<td>${score.studentId }</td>
+		     				<td>${score.stuName }</td>
+		     				<td>${score.score }</td>
+		     			</tr>
+		     		</c:forEach>
+		     	</table>
+	     	</div>
+	     </div>
+	     <div class="row" id="scoreDesc" style="display: none">
+	     	<div class="col-md-8 col-md-offset-2">
+		     	<table class="table table-striped table-hover table-bordered">
+		     		<tr>
+		     			<th>试卷名称</th>
+		     			<th>学生学号</th>
+		     			<th>学生姓名</th>
+		     			<th>学生成绩</th>
+		     		</tr>
+		     		<c:forEach items="${scoresDesc }" var="score">
+		     			<tr>
+		     				<td>${score.examName }</td>
+		     				<td>${score.studentId }</td>
+		     				<td>${score.stuName }</td>
+		     				<td>${score.score }</td>
+		     			</tr>
+		     		</c:forEach>
+		     	</table>
+	     	</div>
+	     </div>
+      </div>
+     
 	</div>
   </div>
 </div>
@@ -290,6 +357,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        }
 		}); 
 		/* window.location.href = "changeFull?fid="+fid+""; */
+	}
+	
+	function toQueryScore(){
+		$(".menu").hide();
+		$("#score").show();
+	}
+	
+	function showScore() {
+		if($("#sequence option:selected").val() == 0){
+			$("#scoreDesc").hide();
+			$("#scoreAsc").show();
+		}else {
+			$("#scoreAsc").hide();
+			$("#scoreDesc").show();
+		}
 	}
 </script>
 </html>
