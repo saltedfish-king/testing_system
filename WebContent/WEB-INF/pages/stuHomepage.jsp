@@ -26,6 +26,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <a>${student.stuName }</a>
     </header>
     <ul class="nav">
+      <li>
+        <a onclick="changeStu()">
+          <i class="zmdi zmdi-widgets"></i> 修改个人信息
+        </a>
+      </li>
       <li onclick="getScore()">
         <a>
           <i class="zmdi zmdi-view-dashboard"></i> 查看试卷
@@ -36,11 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="zmdi zmdi-link"></i> 进入考试
         </a>
       </li>
-      <!-- <li>
-        <a href="#">
-          <i class="zmdi zmdi-widgets"></i> Overview
-        </a>
-      </li>
+      <!-- 
       <li>
         <a href="#">
           <i class="zmdi zmdi-calendar"></i> Events
@@ -79,8 +80,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </nav>
     <div class="container-fluid">
     
+     <!-- 学生修改密码 -->
+     <div class="menu" style="display: none" id="changeStu">
+     	<div class="row">
+     		<div class="col-md-4 col-md-offset-4">
+     			<form action="changeStu" role="form">
+				<div class="form-group">
+					<label>学号:</label>
+					${student.sid }
+				</div>
+				<div class="form-group">
+					<label>学生姓名:</label>
+					${student.stuName }
+				</div>
+				<div class="form-group">
+					<label>密码:</label>
+					<input type="text" class="form-control" name="password" placeholder="${student.password }"><br>
+				</div>
+					<input type="submit" class="btn btn-info text-center" id="submit" value="修改"><br>
+				</form>
+     		</div>
+     	</div>
+     </div>
+    
      <!-- 试卷成绩单 -->
-     <div class="menu" id="grade">
+     <div class="menu" id="grade" style="display:none">
 		<table class="table table-striped table-hover table-bordered text-center">
 				<tr>
 					<th class="text-center">试卷名称</th>
@@ -107,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</table>
       </div>
      <div class="row">
-     	<div class="col-md-6 col-md-offset-3 text-center">
+     	<div class="col-md-4 col-md-offset-4 text-center">
 	      <!-- 选择考试科目 -->
 		  <div class="menu" style="display: none" id="exam">
 			<form action="createExam" role="form">
@@ -158,6 +182,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function toExam(){
 		$(".menu").hide();
 		$("#exam").css('display','block');
+	}
+	function changeStu(){
+		$(".menu").hide();
+		$("#changeStu").show();
 	}
 </script>
 </html>

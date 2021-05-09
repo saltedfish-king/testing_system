@@ -34,4 +34,9 @@
 	<select id="getFullAnswer" resultType="string">
 		SELECT stuAnswer FROM exam_fulltopic WHERE examId = #{0} AND fullId = #{1}
 	</select>
+	
+	<!-- 修改密码 -->
+	<update id="changeStu">
+		UPDATE student SET password = #{password} WHERE sid = #{sid}
+	</update>
 </mapper>

@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a href="backHome?sid=${exam.studentId }"><span class="glyphicon glyphicon-home" style="font-size: 20px"></span>返回首页</a>
 		</div>
 	</div>
+	选择题<br>
 	<table id="chooseTable" class="table table-bordered table-condensed">
 			<tr>
 				<td>1.${exam.chooseTopics[0].topicMsg }</td>
@@ -164,7 +165,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		</table>
 		填空题<br>
-	--------------------------------------<br>
 		<table class="table text-center table-bordered table-condensed" id="fullTable">
 				<tr><td>${exam.fullTopics[0].topicMsg }</td>
 					<td>你的答案：${Answer.stuAnswer[0] }</td>

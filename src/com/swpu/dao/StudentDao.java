@@ -21,4 +21,7 @@ public interface StudentDao {
 	//查询对应试卷的答案
 	public String getChooseAnswer(Integer eid,Integer cid);
 	public String getFullAnswer(Integer eid,Integer fid);
+	
+	//修改密码
+	public void changeStu(Student student);
 }

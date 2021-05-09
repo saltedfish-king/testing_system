@@ -49,4 +49,10 @@ public class StudentServiceImpl implements StudentService{
 	public String getFullAnswer(Integer eid, Integer fid) {
 		return studentDao.getFullAnswer(eid, fid);
 	}
+
+	//修改密码
+	@Override
+	public void changeStu(Student student) {
+		studentDao.changeStu(student);
+	}
 }

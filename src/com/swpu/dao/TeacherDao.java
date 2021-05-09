@@ -45,4 +45,10 @@ public interface TeacherDao {
 	public List<Exam> queryScoreDesc(int examSubject);
 	//根据id获取学生姓名
 	public String getStuName(int sid);
+	
+	//学生注册
+	public void stuRegister(Student stu);
+	
+	//修改密码
+	public void changeInfo(Teacher teacher);
 }

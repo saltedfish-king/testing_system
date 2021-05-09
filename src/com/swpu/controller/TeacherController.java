@@ -26,11 +26,11 @@ public class TeacherController {
 	TeacherService teacherService;
 	
 	//添加学生
-	@RequestMapping("/insertStu")
-	public String insertStu(Student student) {
-		teacherService.insertStu(student);
-		return "success";
-	}
+//	@RequestMapping("/insertStu")
+//	public String insertStu(Student student) {
+//		teacherService.insertStu(student);
+//		return "success";
+//	}
 	
 	//添加题目信息
 	@RequestMapping("/insertChoose")
@@ -149,6 +149,25 @@ public class TeacherController {
 		List<FullTopic> fullTopic = teacherService.queryFullTopic(tea.getTid());
 		model.addAttribute("chooses", chooseTopic);
 		model.addAttribute("fulls", fullTopic);
+		return "redirect:/toTeacherHomepage";
+	}
+	
+	//学生注册
+	@RequestMapping("/stuRegister")
+	public String stuRegister(String stuName,HttpSession session) {
+		Student student  = new Student();
+		student.setStuName(stuName);
+		student.setPassword("123456");
+		teacherService.stuRegister(student);
+		return "redirect:/toTeacherHomepage";
+	}
+	
+	//修改密码
+	@RequestMapping("/changeInfo")
+	public String changeInfo(String password,HttpSession session) {
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		teacher.setPassword(password);
+		teacherService.changeInfo(teacher);
 		return "redirect:/toTeacherHomepage";
 	}
 }

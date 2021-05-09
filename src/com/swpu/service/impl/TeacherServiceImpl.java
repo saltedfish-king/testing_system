@@ -102,4 +102,16 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherDao.getStuName(sid);
 	}
 
+	//学生注册
+	@Override
+	public void stuRegister(Student stu) {
+		teacherDao.stuRegister(stu);
+	}
+
+	//修改密码
+	@Override
+	public void changeInfo(Teacher teacher) {
+		teacherDao.changeInfo(teacher);
+	}
+
 }

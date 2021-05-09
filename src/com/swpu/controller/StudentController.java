@@ -109,4 +109,12 @@ public class StudentController {
 		return "stuExampage";
 	}
 	
+	//学生修改个人信息
+	@RequestMapping("/changeStu")
+	public String changeStu(String password,HttpSession session) {
+		Student student = (Student) session.getAttribute("student");
+		student.setPassword(password);
+		studentService.changeStu(student);
+		return "redirect:/toStuHomepage";
+	}
 }

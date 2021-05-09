@@ -34,11 +34,6 @@
   	(#{topicMsg},#{topicAnswer},#{subjects},#{state},#{teacherId},#{grade})
   </insert>
   
-  <!-- 添加学生 -->
-  <insert id="insertStu" parameterType="com.swpu.bean.Student" useGeneratedKeys="true" keyProperty="sid">
-  	INSERT INTO student (stuName,PASSWORD) VALUE (#{stuName},#{password})
-  </insert>
-  
   <!-- 根据tid查询教师发布的题目 -->
   <select id="queryChooseTopic" resultType="com.swpu.bean.ChooseTopic">
   	SELECT * FROM chooseTopic WHERE teacherId = #{tid}
@@ -74,4 +69,14 @@
   <select id="getStuName" resultType="string">
   	SELECT stuName FROM student WHERE sid = #{sid}
   </select>
+  
+  <!-- 学生注册 -->
+  <insert id="stuRegister" parameterType="com.swpu.bean.Student" useGeneratedKeys="true" keyProperty="sid">
+  	INSERT INTO student (stuName,PASSWORD) VALUE (#{stuName},#{password})
+  </insert>
+  
+  <!-- 修改密码 -->
+  <update id="changeInfo">
+  	UPDATE teacher SET password = #{password} WHERE tid = #{tid}
+  </update>
 </mapper>

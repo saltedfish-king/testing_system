@@ -27,6 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </header>
     <ul class="nav">
       <li>
+        <a onclick="changeInfo()">
+          <i class="zmdi zmdi-info-outline"></i> 修改个人信息
+        </a>
+      </li>
+      <li>
         <a onclick="topicShow(event)">
           <i class="zmdi zmdi-view-dashboard"></i> 添加题目
           <span class="caret"></span>
@@ -48,6 +53,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <i class="zmdi zmdi-widgets"></i> 查询学生成绩
         </a>
       </li>
+      <li>
+        <a onclick="Register()">
+          <i class="zmdi zmdi-calendar"></i> 学生注册
+        </a>
+      </li>
     </ul>
   </div>
   
@@ -57,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
+            <a ><i class="zmdi zmdi-notifications text-danger"></i>
             </a>
           </li>
           <li><a>教师界面</a></li>
@@ -65,6 +75,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
     </nav>
     <div class="container-fluid">
+    
+     <div class="menu" style="display: none" id="changeInfo">
+     	<div class="row">
+     		<div class="col-md-4 col-md-offset-4">
+     			<form action="changeInfo" role="form">
+				<div class="form-group">
+					<label>教师工号:</label>
+					${teacher.tid }
+				</div>
+				<div class="form-group">
+					<label>教学科目:</label>
+					<c:if test="${teacher.subjects == 0 }">
+						语文
+					</c:if>
+					<c:if test="${teacher.subjects == 1 }">
+						数学
+					</c:if>
+					<c:if test="${teacher.subjects == 2 }">
+						英语
+					</c:if>
+				</div>
+				<div class="form-group">
+					<label>教师姓名:</label>
+					${teacher.tName }
+				</div>
+				<div class="form-group">
+					<label>密码:</label>
+					<input type="text" class="form-control" name="password" placeholder="${teacher.password }"><br>
+				</div>
+					<input type="submit" class="btn btn-info text-center" id="submit" value="修改"><br>
+				</form>
+     		</div>
+     	</div>
+     </div>
     
      <!-- 添加选择题 -->
      <div class="menu" style="display: none" id="choose">
@@ -283,12 +327,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	</div>
 	     </div>
       </div>
+      
+      <!-- 学生注册,初始密码都为123456 -->
+      <div class="menu" style="display: none" id="stuRegister">
+	     <div class="row">
+	     	<div class="col-md-4 col-md-offset-4">
+	     		<form action="stuRegister" role="form">
+	     			<div class="form-group">
+					    <label for="stuName">学生姓名</label>
+					    <input type="text" class="form-control" id="stuName" name="stuName" placeholder="请输入名称">
+					</div>
+					<input type="submit" class="btn btn-success text-center" value="添加">
+	     		</form>
+	     	</div>
+	     </div>
+      </div>
      
 	</div>
   </div>
 </div>
 </body>
 <script type="text/javascript">
+	function changeInfo(){
+		$(".menu").hide();
+		$("#changeInfo").show();
+	}
+	
 	function getChoose(){
 		/* $.ajax({
 			type : 'POST',  
@@ -372,6 +436,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#scoreAsc").hide();
 			$("#scoreDesc").show();
 		}
+	}
+	
+	function Register(){
+		$(".menu").hide();
+		$("#stuRegister").show();
 	}
 </script>
 </html>
